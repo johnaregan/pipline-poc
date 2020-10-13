@@ -45,6 +45,21 @@ namespace BordereauRisk.API.Controllers
 			return pipeline.Process(bdx).Url;
 		}
 
+		[HttpGet("MediatR")]
+		public async Task<string> GetMediatR(string document)
+		{
+			var bdx = new RiskBordereau
+			{
+				UniqueIdentifier = (new Guid()).ToString(),
+				XML = "<root><data>information</data></root>"
+			};
+			var request = new BordereauRequest { Bdx = bdx };
+
+			var result = await Mediator.Send(request);
+			return result.UrlLocation;
+		}
+
+
 		[HttpPost("MediatR")]
 		public async Task<string> PostMediatR(string document)
 		{
