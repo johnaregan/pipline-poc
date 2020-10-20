@@ -1,4 +1,5 @@
-using Bordereau.API.Application.Pipelines;
+﻿using Bordereau.API.Application.Pipelines;
+using Bordereau.API.Controllers;
 using Bordereau.API.PipelinesMediatR.Pipelines;
 using Bordereau.Domain;
 using BordereauRisk.API;
@@ -12,6 +13,7 @@ using System;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Bordereau.API.Tests
 {
@@ -46,24 +48,42 @@ namespace Bordereau.API.Tests
 			await BuildTestServerAsync();
 
 			var bordereau = new RiskBordereau
-			{ 
+			{
 				XML = "<root><data>information</data></root>"
 			};
 
-			var bdx = new StringContent(bordereau.XML);			
+			var bdx = new StringContent(bordereau.XML);
 			var response = await client.PostAsync("/RiskBordereau/Mediatr", bdx);
 
 			Assert.NotNull(response);
 		}
 
-		private async Task BuildTestServerAsync() 
+		[Test]
+		public async Task load()
+		{
+			await BuildTestServerAsync();
+
+			var bordereau = new RiskBordereau
+			{
+				XML = "<root><data>information</data></root>"
+			};
+
+			var guid = (new Guid()).ToString();
+			var response = await client.GetAsync($"/RiskBordereau/BordereauResponse/{guid}");
+			var content = await response.Content.ReadAsStringAsync();
+
+
+			Assert.NotNull(content);
+		}
+
+		private async Task BuildTestServerAsync()
 		{
 			var hostBuilder = new HostBuilder().ConfigureWebHost(webHost => {
 				webHost.UseTestServer();
 				webHost.UseStartup<Startup>();
 			});
 			var server = await hostBuilder.StartAsync();
-			client = server.GetTestClient();			
+			client = server.GetTestClient();
 		}
 	}
 }

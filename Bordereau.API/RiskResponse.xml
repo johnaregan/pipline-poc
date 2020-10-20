@@ -1,0 +1,38 @@
+﻿<?xml version="1.0"?>
+<Response xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Submissions Exceptions="0" ValidFiles="3" TotalFilesProcessed="3">
+		<Submission>
+			<MessageID>3726524</MessageID>
+			<MessageTimestamp>2018-05-21T00:00:00</MessageTimestamp>
+			<FileID>MillerRiskReportInterface</FileID>
+			<Filename>MillerRiskReportInterface_3726524_20180521-090635.xml</Filename>
+			<MessageType>RiskReport</MessageType>
+			<XmitDate>2018-05-21</XmitDate>
+			<PolicyReference>TCN094883</PolicyReference>
+			<ContractReference>330503</ContractReference>
+			<Validity>1</Validity>
+		</Submission>
+		<Submission>
+			<MessageID>3726520</MessageID>
+			<MessageTimestamp>2018-05-26T00:00:00</MessageTimestamp>
+			<FileID>MillerRiskReportInterface</FileID>
+			<Filename>MillerRiskReportInterface_3726520_20180521-090635.xml</Filename>
+			<MessageType>RiskReport</MessageType>
+			<XmitDate>2018-05-21</XmitDate>
+			<PolicyReference>TMILVAC211145</PolicyReference>
+			<ContractReference>330650</ContractReference>
+			<Validity>1</Validity>
+		</Submission>
+		<Submission>
+			<MessageID>3726517</MessageID>
+			<MessageTimestamp>2018-05-21T00:00:00</MessageTimestamp>
+			<FileID>MillerRiskReportInterface</FileID>
+			<Filename>MillerRiskReportInterface_3726517_20180521-090635.xml</Filename>
+			<MessageType>RiskReport</MessageType>
+			<XmitDate>2018-05-21</XmitDate>
+			<PolicyReference>TMILVAC212072</PolicyReference>
+			<ContractReference>330650</ContractReference>
+			<Validity>1</Validity>
+		</Submission>
+	</Submissions>
+</Response>

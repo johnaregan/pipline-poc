@@ -14,6 +14,8 @@ using MediatR;
 using System.Reflection;
 using Bordereau.API.PipelinesMediatR.Pipelines;
 using Bordereau.API.ApplicationMediatR;
+using Microsoft.OpenApi.Models;
+using System.IO;
 
 namespace BordereauRisk.API
 {
@@ -31,11 +33,38 @@ namespace BordereauRisk.API
 		{
 			services.AddControllers();
 			MediatRConfiguration.Register(services);
+
+			services.AddSwaggerGen(c => {
+				c.SwaggerDoc("v1", new OpenApiInfo
+				{
+					Version = "v1",
+					Description = "Miller Bordeau API",
+					TermsOfService = new Uri("https://localhost:44374/riskbordereau/MediatR"),
+					Contact = new OpenApiContact
+					{
+						Name = "Miller Insurance",
+						Email = "api@miller-insurance.com"
+					}
+				});
+
+				// Set the comments path for the Swagger JSON and UI.
+				var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+				var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+				c.IncludeXmlComments(xmlPath);
+			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
+			app.UseSwagger(x => { 
+				// x.SerializeAsV2 = true; // for Power Apps and Microsoft Flow
+			});
+			app.UseSwaggerUI(c => {
+				c.SwaggerEndpoint("/swagger/v1/swagger.json", "Risk Bordereau Response");
+				c.RoutePrefix = string.Empty; // to load at root of url
+			});
+			
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();

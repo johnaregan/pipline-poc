@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="PiplineTests.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Include="PiplineTests.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="mediatr" Version="9.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="3.1.8" />
@@ -17,6 +25,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Bordereau.API\Bordereau.API.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="RiskResponse.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
